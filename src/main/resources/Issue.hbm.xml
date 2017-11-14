@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-13 11:37:06 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.mycompany.abd3.Issue" optimistic-lock="version" schema="ABD2" table="Issue">
+    <id name="issueId" type="big_decimal">
+      <column name="IssueID" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="author" type="string">
+      <column length="100" name="author"/>
+    </property>
+    <property name="date" type="date">
+      <column length="7" name="date"/>
+    </property>
+    <property name="coordinator" type="string">
+      <column length="100" name="coordinator"/>
+    </property>
+    <property name="content" type="string">
+      <column name="content"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="tasks" table="Task">
+      <key>
+        <column name="Issue_FK" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="com.mycompany.abd3.Task"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="causes" table="Cause">
+      <key>
+        <column name="Issue_FK" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="com.mycompany.abd3.Cause"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="comments" table="Comment">
+      <key>
+        <column name="Issue_FK" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="com.mycompany.abd3.Comment"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="closingComments" table="ClosingComment">
+      <key>
+        <column name="Issue_FK" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="com.mycompany.abd3.ClosingComment"/>
+    </set>
+  </class>
+</hibernate-mapping>

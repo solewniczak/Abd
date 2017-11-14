@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-13 11:37:06 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.mycompany.abd3.Cause" optimistic-lock="version" schema="ABD2" table="Cause">
+    <id name="causeId" type="big_decimal">
+      <column name="CauseID" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.mycompany.abd3.Issue" fetch="select" name="issue">
+      <column name="Issue_FK" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="author" type="string">
+      <column length="100" name="author"/>
+    </property>
+    <property name="date" type="date">
+      <column length="7" name="date"/>
+    </property>
+    <property name="content" type="string">
+      <column name="content"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="tasks" table="Task">
+      <key>
+        <column name="Cause_FK" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="com.mycompany.abd3.Task"/>
+    </set>
+  </class>
+</hibernate-mapping>
