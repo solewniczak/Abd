@@ -5,7 +5,9 @@
  */
 package com.mycompany.abd3;
 
+import static java.lang.System.exit;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -45,9 +47,10 @@ public class ManageProgram {
                 System.out.println("    Number of issues created by you is: " + showNumberOfMyIssues());
             }
             else if(option == 5){
-                 break;
+                 exit(0);
             }
         }
+        
     }
     
     public int mainMenu() {
@@ -74,7 +77,8 @@ public class ManageProgram {
         
         System.out.println("IssueId\t\tAuthor\t\tDate\t\tCoordinator\t\tContent");
         for (Issue i : issues2) {
-            System.out.println(i.getIssueId() + "\t\t" + i.getAuthor() + "\t\t" + i.getDate() + "\t\t" + i.getCoordinator() + "\t\t" + i.getContent());
+            String date = new SimpleDateFormat("yyyy-MM-dd").format(i.getDate());
+            System.out.println(i.getIssueId() + "\t\t" + i.getAuthor() + "\t\t" + date + "\t\t" + i.getCoordinator() + "\t\t" + i.getContent());
         }
     }
     
@@ -110,4 +114,6 @@ public class ManageProgram {
         List l = numberOfMyIssues.setParameter("username", username).list();
         return l.get(0).toString();
     }
+    
+    
 }
