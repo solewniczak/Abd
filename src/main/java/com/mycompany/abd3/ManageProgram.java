@@ -85,8 +85,11 @@ public class ManageProgram {
     public void createIssue(){
         Query id = session.createQuery("select max(issueId) from Issue");
         List ids = id.list();
-
-        BigDecimal n = (BigDecimal)ids.get(0);
+        
+        BigDecimal n = new BigDecimal(0);
+        if (ids.get(0) != null) {
+          n = (BigDecimal)ids.get(0);
+        }
         
         BigDecimal newId = n.add(new BigDecimal(1));
         Date date = new Date();
