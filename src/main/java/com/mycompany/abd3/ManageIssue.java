@@ -276,6 +276,10 @@ public class ManageIssue {
             query.setParameter("issue", issue);
 
             System.out.println(query.executeUpdate());
+                                    
+            //wait 
+            reader.next();
+
 
             // your code
             hql = "delete from Task where issue=:issue";
